@@ -1,0 +1,2 @@
+docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
+docker image push $APP_NAME:$BUILD_NUMBER

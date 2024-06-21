@@ -1,0 +1,30 @@
+pipeline {
+    environment {
+        MY_ENV_VARIABLE = "Pavaneeshwar"
+    }
+    stages{
+        stage("Build Step") {
+            steps{
+                sh "echo Build step"
+            }
+        }
+        stage("Test Step") {
+            steps{
+                sh "echo Test step"
+            }
+        }
+        stage("Deploy Step") {
+            steps{
+                sh "echo Deploy step"
+            }
+        }
+    }
+    post{
+        success {
+            "echo CI-CD pipeline successful"
+        }
+        failure {
+            "echo CI-CD pipeline failure"
+        }
+    }
+}

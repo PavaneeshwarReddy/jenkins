@@ -4,8 +4,8 @@ FROM node:22.3-alpine3.19
 # Create a directory for the Jenkins test
 RUN mkdir /home/jenkinstest
 
-# Add a new user and group (e.g., jenkinsuser)
-RUN addgroup -S jenkinsuser && adduser -S pavan -G jenkinsuser
+# Add a new user and group (e.g., tempuser)
+RUN addgroup -S tempuser && adduser -S tempuser -G tempuser
 
 # Set the working directory
 WORKDIR /home/jenkinstest
@@ -14,10 +14,10 @@ WORKDIR /home/jenkinstest
 COPY . .
 
 # Change ownership of the directory to the new user
-RUN chown -R jenkinsuser:pavan /home/jenkinstest
+RUN chown -R tempuser:tempuser /home/jenkinstest
 
 # Switch to the new user
-USER jenkinsuser
+USER tempuser
 
 # Optional: Add a build trigger instruction
 ONBUILD RUN echo "Jenkins Test - Container build successful"
