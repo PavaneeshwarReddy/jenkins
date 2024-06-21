@@ -1,4 +1,5 @@
 pipeline {
+    agent any
     environment {
         MY_ENV_VARIABLE = "Pavaneeshwar"
     }
