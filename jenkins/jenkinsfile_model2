@@ -2,6 +2,8 @@ pipeline {
     agent any
     environment {
         MY_ENV_VARIABLE = 'Pavaneeshwar'
+        SLACK_CHANNEL = "#jenkins"
+        SLACK_CREDENTIALS_ID = "slack-configuration-id"
     }
     stages {
         stage('Build Step') {
@@ -29,7 +31,8 @@ pipeline {
     }
     post {
         success {
-            sh 'echo CI-CD pipeline successful'
+            sh 'echo CI-CD pipeline successful' 
+            slackSend(channel: env.SLACK_CHANNEL, color: 'green', message: 'Build successful')
         }
         failure {
             sh 'echo CI-CD pipeline failure'
