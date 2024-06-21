@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+    environment {
+        MY_ENV_VARIABLE = 'Pavaneeshwar'
+    }
+    stages {
+        stage('Build Step') {
+            steps {
+                sh 'echo Build step'
+            }
+        }
+        stage('Test Step') {
+            steps {
+                sh 'echo Test step'
+            }
+        }
+        stage('Deploy Step') {
+            input {
+                message "Do you want to deploy ?"
+                ok "Do it !!!"
+                parameters{
+                    string (name:"DEPLOY_ENVIRONMENT", defaultValue:"prod", description:"Type of environment to deploy")
+                }
+            }
+            steps {
+                sh 'echo Deployed in $DEPLOY_ENVIRONMENT'
+            }
+        }
+    }
+    post {
+        success {
+            sh 'echo CI-CD pipeline successful'
+        }
+        failure {
+            sh 'echo CI-CD pipeline failure'
+        }
+    }
+}
